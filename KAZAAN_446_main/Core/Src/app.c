@@ -12,9 +12,14 @@
 
 static bool JP_Lift_Up(void);
 static bool JP_Lift_Down(void);
+static void Lottery_1st2nd_SetSpeed(int speed);
+static void Lottery_3rd_SetSpeed(int speed);
+static void Lottery_JP_SetSpeed(int speed, int direction);
 
 int appInit(void){
-
+	Lottery_1st2nd_SetSpeed(0);
+	Lottery_3rd_SetSpeed(0);
+	Lottery_JP_SetSpeed(0,0);
 	return 0;
 }
 
@@ -22,7 +27,7 @@ int appTask(void){
 	//D_Mess_printf("%d\n", G_System_counter);
 	//D_PWM_Set(1,100);
 	//D_PWM_Set(2,100);
-	IO_SET_BLDC2_DIR();
+	//IO_SET_BLDC2_DIR();
 	if(IO_READ_USERBUTTON()){
 		IO_SET_USERLED();
 		//IO_SET_BLDC1_ENA();
@@ -31,17 +36,19 @@ int appTask(void){
 		//D_PWM_Set(BLDC2,50);
 		//D_PWM_Set(BLDC3,300);
 		//IO_SET_JP_LED();
+		Lottery_1st2nd_SetSpeed(500);
 
 		//JP_Lift_Down();
 	}else{
 		IO_RESET_USERLED();
-		IO_RESET_BLDC1_ENA();
-		IO_RESET_BLDC2_ENA();
-		IO_RESET_BLDC3_ENA();
-		D_PWM_Set(BLDC1,300);
-		D_PWM_Set(BLDC2,3000);
+		//IO_RESET_BLDC1_ENA();
+		//IO_RESET_BLDC2_ENA();
+		//IO_RESET_BLDC3_ENA();
+		//D_PWM_Set(BLDC1,300);
+		//D_PWM_Set(BLDC2,3000);
 		//D_PWM_Set(BLDC3,3500);
 		//IO_RESET_JP_LED();
+		Lottery_1st2nd_SetSpeed(100);
 
 		//JP_Lift_Up();
 	}
@@ -73,6 +80,49 @@ int appTask(void){
 
 
 	return 0;
+}
+
+
+static void Lottery_1st2nd_SetSpeed(int speed){
+	if(speed >= 1000) speed = 1000;
+	if(speed <= 0) speed = 0;
+	int setSpeed = (BLDC_MAX_SPEED / 1000.0) * speed;
+	if(setSpeed == 0){
+		IO_RESET_BLDC1_ENA();
+	}else{
+		IO_SET_BLDC1_ENA();
+	}
+	D_PWM_Set(BLDC1,setSpeed);
+}
+
+static void Lottery_3rd_SetSpeed(int speed){
+	IO_SET_BLDC2_DIR();
+	if(speed >= 1000) speed = 1000;
+	if(speed <= 0) speed = 0;
+	int setSpeed = (BLDC_MAX_SPEED / 1000.0) * speed;
+	if(setSpeed == 0){
+		IO_RESET_BLDC2_ENA();
+	}else{
+		IO_SET_BLDC2_ENA();
+	}
+	D_PWM_Set(BLDC2,setSpeed);
+}
+
+static void Lottery_JP_SetSpeed(int speed, int direction){
+	if(speed >= 1000) speed = 1000;
+	if(speed <= 0) speed = 0;
+	int setSpeed = (BLDC_MAX_SPEED / 1000.0) * speed;
+	if(setSpeed == 0){
+		IO_RESET_BLDC3_ENA();
+	}else{
+		IO_SET_BLDC3_ENA();
+	}
+	if(direction == 0){
+		IO_RESET_BLDC3_DIR();
+	}else if(direction == 1){
+		IO_SET_BLDC3_DIR();
+	}
+	D_PWM_Set(BLDC3,setSpeed);
 }
 
 static bool JP_Lift_Up(void){

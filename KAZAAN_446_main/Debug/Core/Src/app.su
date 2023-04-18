@@ -1,4 +1,7 @@
-app.c:16:5:appInit	4	static
-app.c:21:5:appTask	16	static
-app.c:78:13:JP_Lift_Up	8	static
-app.c:90:13:JP_Lift_Down	8	static
+app.c:19:5:appInit	8	static
+app.c:26:5:appTask	16	static
+app.c:86:13:Lottery_1st2nd_SetSpeed	24	static
+app.c:98:13:Lottery_3rd_SetSpeed	24	static
+app.c:111:13:Lottery_JP_SetSpeed	24	static
+app.c:128:13:JP_Lift_Up	8	static
+app.c:140:13:JP_Lift_Down	8	static

@@ -118,11 +118,11 @@ int main(void)
   {
 	  appTask();
 
-	  if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9) == 1){
+	  //if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9) == 1){
 		  //HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET);
-	  }else if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9) == 0){
+	  //}else if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9) == 0){
 		  //HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET);
-	  }
+	  //}
 	  /*if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13) == 0){
 		  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, 50);
 		  //__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 500);
