@@ -1,0 +1,26 @@
+23:42:46 **** Incremental Build of configuration Debug for project KAZAAN_446_main ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+../Core/Src/app.c:90:13: warning: 'JP_Lift_Down' defined but not used [-Wunused-function]
+   90 | static bool JP_Lift_Down(void){
+      |             ^~~~~~~~~~~~
+../Core/Src/app.c:78:13: warning: 'JP_Lift_Up' defined but not used [-Wunused-function]
+   78 | static bool JP_Lift_Up(void){
+      |             ^~~~~~~~~~
+arm-none-eabi-gcc -o "KAZAAN_446_main.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/KAZAAN_446_main/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="KAZAAN_446_main.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: KAZAAN_446_main.elf
+ 
+arm-none-eabi-size   KAZAAN_446_main.elf 
+arm-none-eabi-objdump -h -S  KAZAAN_446_main.elf  > "KAZAAN_446_main.list"
+arm-none-eabi-objcopy  -O binary  KAZAAN_446_main.elf  "KAZAAN_446_main.bin"
+   text	   data	    bss	    dec	    hex	filename
+  27564	     24	   3480	  31068	   795c	KAZAAN_446_main.elf
+Finished building: default.size.stdout
+ 
+Finished building: KAZAAN_446_main.bin
+ 
+Finished building: KAZAAN_446_main.list
+ 
+
+23:42:48 Build Finished. 0 errors, 2 warnings. (took 1s.933ms)
+

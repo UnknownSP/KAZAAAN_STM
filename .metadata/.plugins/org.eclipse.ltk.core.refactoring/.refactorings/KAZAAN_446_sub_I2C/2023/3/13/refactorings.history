@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;KAZAAN_446_sub_I2C/KAZAAN_446_sub.ioc&apos; to &apos;KAZAAN_446_sub_I2C.ioc&apos;" description="Rename resource &apos;KAZAAN_446_sub.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="KAZAAN_446_sub.ioc" name="KAZAAN_446_sub_I2C.ioc" stamp="1679851802860" updateReferences="true"/>
+</session>
