@@ -20,6 +20,7 @@ static int Encoder_2nd(void);
 static int Encoder_3rd(void);
 static int Encoder_JP(void);
 static int JPC_Processing(int station, int speed,int direction);
+static int JPC_DecelerationSpeed_cal(int time);
 
 static int Encoder_Num_1st = 1;
 static int Encoder_Num_2nd = 1;
@@ -52,9 +53,10 @@ int appTask(void){
 		//D_PWM_Set(BLDC2,50);
 		//D_PWM_Set(BLDC3,300);
 		//IO_SET_JP_LED();
-		Lottery_1st2nd_SetSpeed(500);
-		Lottery_3rd_SetSpeed(800);
-		Lottery_JP_SetSpeed(300,0);
+		//Lottery_1st2nd_SetSpeed(500);
+		//Lottery_3rd_SetSpeed(800);
+		//Lottery_JP_SetSpeed(300,0);
+		JPC_stations[0] = 1;
 
 		//JP_Lift_Down();
 	}else{
@@ -66,20 +68,15 @@ int appTask(void){
 		//D_PWM_Set(BLDC2,3000);
 		//D_PWM_Set(BLDC3,3500);
 		//IO_RESET_JP_LED();
-		Lottery_1st2nd_SetSpeed(100);
-		Lottery_3rd_SetSpeed(300);
-		Lottery_JP_SetSpeed(10,0);
+		
+		//Lottery_1st2nd_SetSpeed(100);
+		//Lottery_3rd_SetSpeed(300);
+		//Lottery_JP_SetSpeed(10,0);
 
 		//JP_Lift_Up();
 	}
 
-	/*
-	if(IO_READ_1ST_ENC()){
-		IO_RESET_JP_LED();
-	}else{
-		IO_SET_JP_LED();
-	}
-	*/
+	JPC_Processing(JPC_stations[0],50,0);
 
 	int16_t debug_bits = 0;
 	debug_bits &= 0;
@@ -156,11 +153,54 @@ static int JPC_Processing(int station, int speed, int direction){
 		}
 		break;
 	case JPC_DECELERATION_1:
-	
+		if(caseDeltaTime >= JPC_DECELERATOIN_TIME){
+			Lottery_JP_SetSpeed(JPC_MIN_SPEED,direction);
+		}else{
+			int calSpeed = JPC_DecelerationSpeed_cal(caseDeltaTime);
+			Lottery_JP_SetSpeed(calSpeed,direction);
+		}
+		if(IO_READ_JP_FRONT() || IO_READ_JP_REAR()){
+			caseDeltaTime = 0;
+			JPC_state += 1;
+			Lottery_JP_SetSpeed(JPC_MIN_SPEED,direction);
+		}
+		break;
+	case JPC_JUDGE_1:
+		caseDeltaTime = 0;
+		JPC_state += 1;
+		break;
+	case JPC_STOP_1:
+		//if(caseDeltaTime <){
+
+		//}
+		caseDeltaTime = 0;
+		//JPC_state += 1;
+		JPC_state = JPC_LED_OFF;
+		break;
+	case JPC_LED_OFF:
+		IO_RESET_JP_LED();
+		caseDeltaTime = 0;
+		//JPC_state += 1;
+		//JPC_state = JPC_LIFT_DOWN;
+		break;
+	case JPC_LIFT_DOWN:
+		if(JP_Lift_Down()){
+			caseDeltaTime = 0;
+			JPC_state += 1;
+		}
+		break;
+
 	default:
 		break;
 	}
 	RecentTime = G_System_counter;
+}
+
+static int JPC_DecelerationSpeed_cal(int time){
+	double x = ((double)JPC_DECELERATOIN_TIME-(double)time)/(double)JPC_DECELERATOIN_TIME;
+	double f_x = x*x*x;
+	int return_speed = JPC_MIN_SPEED + (int)((double)(JPC_MAX_SPEED - JPC_MIN_SPEED)*f_x);
+	return return_speed;
 }
 
 static int Encoder_1st(void){

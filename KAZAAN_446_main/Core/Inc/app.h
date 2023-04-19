@@ -21,13 +21,13 @@ typedef enum{
     JPC_WAIT_INPUT_1    = 4,
     JPC_ROT_START_1     = 5,
     JPC_DECELERATION_1  = 6,
-    JPC_STOP_1          = 7,
-    JPC_JUDGE_1         = 8,
+    JPC_JUDGE_1         = 7,
+    JPC_STOP_1          = 8,
     JPC_WAIT_INPUT_2    = 9,
     JPC_ROT_START_2     = 10,
     JPC_DECELERATION_2  = 11,
-    JPC_STOP_2          = 12,
-    JPC_JUDGE_2         = 13,
+    JPC_JUDGE_2         = 12,
+    JPC_STOP_2          = 13,
     JPC_ROT_START_SLOW_2= 14,
     JPC_LED_OFF         = 15,
     JPC_LIFT_DOWN       = 16,
@@ -36,8 +36,10 @@ typedef enum{
 
 #define BLDC_MAX_SPEED 5000
 
-#define JPC_MAX_SPEED 800
-#define JPC_MIN_SPEED 20
+#define JPC_MAX_SPEED 900
+#define JPC_MIN_SPEED 50
+#define JPC_SLOW_SPEED 20
+#define JPC_DECELERATOIN_TIME 20000
 
 //1st and 2nd BLDC controller
 #define IO_RESET_BLDC1_ENA() (D_GPIO_Set(GPIOC,GPIO_PIN_6))
