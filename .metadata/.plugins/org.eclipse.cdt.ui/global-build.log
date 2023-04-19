@@ -1,13 +1,45 @@
-01:44:33 **** Incremental Build of configuration Debug for project KAZAAN_446_main ****
+01:40:48 **** Incremental Build of configuration Debug for project KAZAAN_446_main ****
 make -j3 all 
+arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
+arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
+arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
-../Core/Src/app.c:140:13: warning: 'JP_Lift_Down' defined but not used [-Wunused-function]
-  140 | static bool JP_Lift_Down(void){
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+../Core/Src/app.c: In function 'Encoder_1st':
+../Core/Src/app.c:200:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  200 | }
+      | ^
+../Core/Src/app.c: In function 'Encoder_2nd':
+../Core/Src/app.c:236:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  236 | }
+      | ^
+../Core/Src/app.c: In function 'Encoder_3rd':
+../Core/Src/app.c:272:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  272 | }
+      | ^
+../Core/Src/app.c: In function 'Encoder_JP':
+../Core/Src/app.c:309:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  309 | }
+      | ^
+../Core/Src/app.c: In function 'JPC_Processing':
+../Core/Src/app.c:164:1: warning: control reaches end of non-void function [-Wreturn-type]
+  164 | }
+      | ^
+At top level:
+../Core/Src/app.c:366:13: warning: 'JP_Lift_Down' defined but not used [-Wunused-function]
+  366 | static bool JP_Lift_Down(void){
       |             ^~~~~~~~~~~~
-../Core/Src/app.c:128:13: warning: 'JP_Lift_Up' defined but not used [-Wunused-function]
-  128 | static bool JP_Lift_Up(void){
-      |             ^~~~~~~~~~
+../Core/Src/app.c:109:12: warning: 'JPC_Processing' defined but not used [-Wunused-function]
+  109 | static int JPC_Processing(int station, int speed, int direction){
+      |            ^~~~~~~~~~~~~~
+../Core/Src/app.c:29:12: warning: 'JPC_stations' defined but not used [-Wunused-variable]
+   29 | static int JPC_stations[4] = {0};
+      |            ^~~~~~~~~~~~
+../Core/Src/app.c:28:13: warning: '_is_JPC' defined but not used [-Wunused-variable]
+   28 | static bool _is_JPC = false;
+      |             ^~~~~~~
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
 arm-none-eabi-gcc -o "KAZAAN_446_main.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/KAZAAN_446_main/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="KAZAAN_446_main.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: KAZAAN_446_main.elf
  
@@ -15,7 +47,7 @@ arm-none-eabi-size   KAZAAN_446_main.elf
 arm-none-eabi-objdump -h -S  KAZAAN_446_main.elf  > "KAZAAN_446_main.list"
 arm-none-eabi-objcopy  -O binary  KAZAAN_446_main.elf  "KAZAAN_446_main.bin"
    text	   data	    bss	    dec	    hex	filename
-  29460	     24	   3480	  32964	   80c4	KAZAAN_446_main.elf
+  30412	     40	   3544	  33996	   84cc	KAZAAN_446_main.elf
 Finished building: default.size.stdout
  
 Finished building: KAZAAN_446_main.bin

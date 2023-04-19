@@ -13271,3 +13271,9 @@
 2023-04-19 01:18:03,626 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
 2023-04-19 01:18:03,627 [WARN] IP:2125 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
 2023-04-19 01:18:03,627 [WARN] IP:2125 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2023-04-19 17:11:31,359 [INFO] Gpio:254 - dependency for GPIO [I2C1, RCC, SYS, TIM3, USART1, USART2]
+2023-04-19 17:11:39,401 [INFO] NvicIntPanel:96 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,2,42,451x449,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-04-19 17:12:45,749 [INFO] DbMcusDocs:143 - JSON generation date=Wed Nov 17 01:17:54 JST 2021 (1637079474)
+2023-04-19 17:12:45,925 [INFO] DbMcusDocs:79 - Found 682 MCUs documents
+2023-04-19 17:13:11,628 [INFO] Gpio:254 - dependency for GPIO [I2C1, RCC, SYS, TIM3, USART1, USART2]
+2023-04-19 17:16:09,447 [INFO] NvicIntPanel:96 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,2,42,486x527,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]

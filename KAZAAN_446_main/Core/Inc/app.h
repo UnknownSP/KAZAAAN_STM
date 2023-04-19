@@ -13,7 +13,31 @@
 int appTask(void);
 int appInit(void);
 
+typedef enum{
+    JPC_ROT_START_SLOW_1= 0,
+    JPC_LED_ON          = 1,
+    JPC_LIFT_UP         = 2,
+    JPC_WAIT_1          = 3,
+    JPC_WAIT_INPUT_1    = 4,
+    JPC_ROT_START_1     = 5,
+    JPC_DECELERATION_1  = 6,
+    JPC_STOP_1          = 7,
+    JPC_JUDGE_1         = 8,
+    JPC_WAIT_INPUT_2    = 9,
+    JPC_ROT_START_2     = 10,
+    JPC_DECELERATION_2  = 11,
+    JPC_STOP_2          = 12,
+    JPC_JUDGE_2         = 13,
+    JPC_ROT_START_SLOW_2= 14,
+    JPC_LED_OFF         = 15,
+    JPC_LIFT_DOWN       = 16,
+    JPC_STACK_PROCESS   = 17,
+}JPC_Process_State;
+
 #define BLDC_MAX_SPEED 5000
+
+#define JPC_MAX_SPEED 800
+#define JPC_MIN_SPEED 20
 
 //1st and 2nd BLDC controller
 #define IO_RESET_BLDC1_ENA() (D_GPIO_Set(GPIOC,GPIO_PIN_6))
