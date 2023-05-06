@@ -1,0 +1,31 @@
+/*
+ * app.c
+ *
+ *  Created on: Mar 11, 2023
+ *      Author: UnknownSP
+ */
+
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+#include "app.h"
+
+int appInit(void){
+	return 0;
+}
+
+int appTask(void){
+	Encoder_1st();
+	if(IO_READ_USERBUTTON()){
+		IO_SET_USERLED();
+	}else{
+		IO_RESET_USERLED();
+	}
+
+	D_Mess_printf("\033[1;1H");
+	D_Mess_printf("debug\n");
+
+
+	return 0;
+}
+

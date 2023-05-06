@@ -1,0 +1,2 @@
+pwm.c:14:6:D_PWM_Init	8	static
+pwm.c:21:6:D_PWM_Set	16	static
