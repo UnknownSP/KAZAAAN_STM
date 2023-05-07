@@ -1,21 +1,20 @@
-03:20:56 **** Incremental Build of configuration Debug for project SMASTA ****
+04:01:56 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
-arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
-arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
-arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
-arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/app.c: In function 'Encoder_Process':
-../Core/Src/app.c:128:1: warning: no return statement in function returning non-void [-Wreturn-type]
-  128 | }
-      | ^
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:38:10: warning: variable 'b' set but not used [-Wunused-but-set-variable]
+   38 |      int b=0;
+      |          ^
+../Core/Src/app.c:37:10: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+   37 |      int g=0;
+      |          ^
+../Core/Src/app.c:36:10: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+   36 |      int r=0;
+      |          ^
 At top level:
-../Core/Src/app.c:14:16: warning: 'LED_Data_temp' defined but not used [-Wunused-variable]
-   14 | static uint8_t LED_Data_temp[LED_NUM][4];
-      |                ^~~~~~~~~~~~~
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+../Core/Src/app.c:14:16: warning: 'LED_Temp' defined but not used [-Wunused-variable]
+   14 | static uint8_t LED_Temp[LED_NUM] = {0};
+      |                ^~~~~~~~
 arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: SMASTA.elf
  
@@ -23,19 +22,28 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30384	     24	   9072	  39480	   9a38	SMASTA.elf
+  30428	     24	   9072	  39524	   9a64	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:21:40 **** Incremental Build of configuration Debug for project SMASTA ****
+04:06:25 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
-../Core/Src/app.c:14:16: warning: 'LED_Data_temp' defined but not used [-Wunused-variable]
-   14 | static uint8_t LED_Data_temp[LED_NUM][4];
-      |                ^~~~~~~~~~~~~
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:83:20: warning: passing argument 1 of 'D_LED_Set_Circle' from incompatible pointer type [-Wincompatible-pointer-types]
+   83 |   D_LED_Set_Circle(LED_Temp, i+1);
+      |                    ^~~~~~~~
+      |                    |
+      |                    uint8_t (*)[3] {aka unsigned char (*)[3]}
+In file included from ../Core/Inc/main.h:42,
+                 from ../Core/Inc/app.h:11,
+                 from ../Core/Src/app.c:11:
+../Core/Inc/../../Drivers/LED/Inc/LED.h:16:32: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[3]' {aka 'unsigned char (*)[3]'}
+   16 | void D_LED_Set_Circle(uint8_t* LED, int num);
+      |                       ~~~~~~~~~^~~
 arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: SMASTA.elf
  
@@ -43,43 +51,28 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30384	     24	   9072	  39480	   9a38	SMASTA.elf
+  32476	     24	   9224	  41724	   a2fc	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:34:23 **** Incremental Build of configuration Debug for project SMASTA ****
-make -j3 all 
-arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
-arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
-arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
-arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
-arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/app.c:14:16: warning: 'LED_Data_temp' defined but not used [-Wunused-variable]
-   14 | static uint8_t LED_Data_temp[LED_NUM][3];
-      |                ^~~~~~~~~~~~~
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
-arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: SMASTA.elf
- 
-arm-none-eabi-size   SMASTA.elf 
-arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
-arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
-   text	   data	    bss	    dec	    hex	filename
-  30648	     24	   9072	  39744	   9b40	SMASTA.elf
-Finished building: default.size.stdout
- 
-Finished building: SMASTA.bin
- 
-Finished building: SMASTA.list
- 
-03:35:30 **** Incremental Build of configuration Debug for project SMASTA ****
+04:07:21 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:83:20: warning: passing argument 1 of 'D_LED_Set_Circle' from incompatible pointer type [-Wincompatible-pointer-types]
+   83 |   D_LED_Set_Circle(LED_Temp, i+1);
+      |                    ^~~~~~~~
+      |                    |
+      |                    uint8_t (*)[3] {aka unsigned char (*)[3]}
+In file included from ../Core/Inc/main.h:42,
+                 from ../Core/Inc/app.h:11,
+                 from ../Core/Src/app.c:11:
+../Core/Inc/../../Drivers/LED/Inc/LED.h:16:32: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[3]' {aka 'unsigned char (*)[3]'}
+   16 | void D_LED_Set_Circle(uint8_t* LED, int num);
+      |                       ~~~~~~~~~^~~
 arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: SMASTA.elf
  
@@ -87,32 +80,14 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30652	     24	   9072	  39748	   9b44	SMASTA.elf
+  32484	     24	   9224	  41732	   a304	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:36:56 **** Incremental Build of configuration Debug for project SMASTA ****
-make -j3 all 
-arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
-arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
-arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: SMASTA.elf
- 
-arm-none-eabi-size   SMASTA.elf 
-arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
-arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
-Finished building: SMASTA.bin
- 
-   text	   data	    bss	    dec	    hex	filename
-  30664	     24	   9072	  39760	   9b50	SMASTA.elf
-Finished building: default.size.stdout
- 
-Finished building: SMASTA.list
- 
-03:38:05 **** Incremental Build of configuration Debug for project SMASTA ****
+04:10:02 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
 arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
@@ -120,6 +95,18 @@ arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDE
 arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:83:20: warning: passing argument 1 of 'D_LED_Set_Circle' from incompatible pointer type [-Wincompatible-pointer-types]
+   83 |   D_LED_Set_Circle(LED_Temp, i+1);
+      |                    ^~~~~~~~
+      |                    |
+      |                    uint8_t (*)[3] {aka unsigned char (*)[3]}
+In file included from ../Core/Inc/main.h:42,
+                 from ../Core/Inc/app.h:11,
+                 from ../Core/Src/app.c:11:
+../Core/Inc/../../Drivers/LED/Inc/LED.h:16:33: note: expected 'uint8_t **' {aka 'unsigned char **'} but argument is of type 'uint8_t (*)[3]' {aka 'unsigned char (*)[3]'}
+   16 | void D_LED_Set_Circle(uint8_t** LED, int num);
+      |                       ~~~~~~~~~~^~~
 arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
 arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
 arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -129,14 +116,14 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30668	     24	   9072	  39764	   9b54	SMASTA.elf
+  32508	     24	   9224	  41756	   a31c	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:39:04 **** Incremental Build of configuration Debug for project SMASTA ****
+04:11:48 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
 arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
@@ -153,14 +140,605 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30668	     24	   9072	  39764	   9b54	SMASTA.elf
+  32512	     24	   9224	  41760	   a320	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:39:24 **** Incremental Build of configuration Debug for project SMASTA ****
+04:12:29 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  32504	     24	   9224	  41752	   a318	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+13:44:27 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
+arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
+arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
+arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/app.c:25:1: error: expected ',' or ';' before 'static'
+   25 | static int Encoder_Process(void);
+      | ^~~~~~
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:32:2: warning: implicit declaration of function 'Encoder_Process' [-Wimplicit-function-declaration]
+   32 |  Encoder_Process();
+      |  ^~~~~~~~~~~~~~~
+../Core/Src/app.c: At top level:
+../Core/Src/app.c:125:12: error: static declaration of 'Encoder_Process' follows non-static declaration
+  125 | static int Encoder_Process(void){
+      |            ^~~~~~~~~~~~~~~
+../Core/Src/app.c:32:2: note: previous implicit declaration of 'Encoder_Process' was here
+   32 |  Encoder_Process();
+      |  ^~~~~~~~~~~~~~~
+../Core/Src/app.c:125:12: warning: 'Encoder_Process' defined but not used [-Wunused-function]
+  125 | static int Encoder_Process(void){
+      |            ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/app.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j3 all" terminated with exit code 2. Build might be incomplete.
+13:44:50 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+13:48:16 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+Finished building: SMASTA.bin
+ 
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.list
+ 
+13:51:15 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+Finished building: SMASTA.bin
+ 
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.list
+ 
+13:51:47 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+13:52:26 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+Finished building: SMASTA.bin
+ 
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.list
+ 
+13:53:23 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  32844	     48	   9224	  42116	   a484	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+13:59:24 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33144	     48	   9224	  42416	   a5b0	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:01:33 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33328	     48	   9224	  42600	   a668	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:04:40 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+Finished building: SMASTA.bin
+ 
+   text	   data	    bss	    dec	    hex	filename
+  33124	     48	   9224	  42396	   a59c	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.list
+ 
+14:05:04 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33008	     48	   9224	  42280	   a528	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:06:58 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33008	     48	   9224	  42280	   a528	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:09:55 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33008	     48	   9224	  42280	   a528	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:10:18 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33008	     48	   9224	  42280	   a528	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:11:19 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  32984	     48	   9224	  42256	   a510	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:12:19 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33032	     48	   9224	  42304	   a540	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:13:53 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+Finished building: SMASTA.bin
+ 
+   text	   data	    bss	    dec	    hex	filename
+  33032	     48	   9224	  42304	   a540	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.list
+ 
+14:15:24 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33032	     48	   9224	  42304	   a540	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:23:55 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33032	     48	   9224	  42304	   a540	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:24:21 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33032	     48	   9224	  42304	   a540	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:25:14 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33040	     48	   9224	  42312	   a548	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:30:01 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33040	     48	   9224	  42312	   a548	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:30:18 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33040	     48	   9224	  42312	   a548	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:39:50 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33432	     48	   9376	  42856	   a768	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:41:03 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33432	     48	   9376	  42856	   a768	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:42:56 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33440	     48	   9376	  42864	   a770	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:47:55 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33440	     48	   9376	  42864	   a770	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:48:24 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33448	     48	   9376	  42872	   a778	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+14:52:24 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33448	     48	   9376	  42872	   a778	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:04:43 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+../Core/Src/app.c:27:1: error: unknown type name 'staitc'
+   27 | staitc uint32_t RainbowTime = 0;
+      | ^~~~~~
+../Core/Src/app.c:27:17: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'RainbowTime'
+   27 | staitc uint32_t RainbowTime = 0;
+      |                 ^~~~~~~~~~~
+../Core/Src/app.c: In function 'appTask':
+../Core/Src/app.c:52:2: error: 'RainbowTime' undeclared (first use in this function); did you mean 'Rainbow'?
+   52 |  RainbowTime += DeltaTime;
+      |  ^~~~~~~~~~~
+      |  Rainbow
+../Core/Src/app.c:52:2: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:37: Core/Src/app.o] Error 1
+"make -j3 all" terminated with exit code 2. Build might be incomplete.
+15:05:01 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33516	     48	   9392	  42956	   a7cc	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:07:11 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33536	     48	   9392	  42976	   a7e0	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:08:59 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33540	     48	   9392	  42980	   a7e4	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:09:33 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
 arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
@@ -177,14 +755,38 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30668	     24	   9072	  39764	   9b54	SMASTA.elf
+  33540	     48	   9392	  42980	   a7e4	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin
  
 Finished building: SMASTA.list
  
-03:42:31 **** Incremental Build of configuration Debug for project SMASTA ****
+15:15:43 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Drivers/PWM/Src/pwm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/PWM/Src/pwm.d" -MT"Drivers/PWM/Src/pwm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/PWM/Src/pwm.o"
+arm-none-eabi-gcc "../Drivers/Message/Src/message.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Message/Src/message.d" -MT"Drivers/Message/Src/message.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Message/Src/message.o"
+arm-none-eabi-gcc "../Drivers/LED/Src/LED.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/LED/Src/LED.d" -MT"Drivers/LED/Src/LED.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/LED/Src/LED.o"
+arm-none-eabi-gcc "../Drivers/GPIO/Src/GPIO.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/GPIO/Src/GPIO.d" -MT"Drivers/GPIO/Src/GPIO.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/GPIO/Src/GPIO.o"
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33912	     56	   9400	  43368	   a968	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:16:03 **** Incremental Build of configuration Debug for project SMASTA ****
 make -j3 all 
 arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
 arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -194,7 +796,41 @@ arm-none-eabi-size   SMASTA.elf
 arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
 arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  30604	     24	   9072	  39700	   9b14	SMASTA.elf
+  33912	     56	   9400	  43368	   a968	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:17:01 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33912	     56	   9400	  43368	   a968	SMASTA.elf
+Finished building: default.size.stdout
+ 
+Finished building: SMASTA.bin
+ 
+Finished building: SMASTA.list
+ 
+15:19:12 **** Incremental Build of configuration Debug for project SMASTA ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "SMASTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/UnknownSP/STM32CubeIDE/KAZAAN/SMASTA/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SMASTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SMASTA.elf
+ 
+arm-none-eabi-size   SMASTA.elf 
+arm-none-eabi-objdump -h -S  SMASTA.elf  > "SMASTA.list"
+arm-none-eabi-objcopy  -O binary  SMASTA.elf  "SMASTA.bin"
+   text	   data	    bss	    dec	    hex	filename
+  33992	     56	   9400	  43448	   a9b8	SMASTA.elf
 Finished building: default.size.stdout
  
 Finished building: SMASTA.bin

@@ -23,6 +23,15 @@ void D_LED_Set(int LEDnum, int Red, int Green, int Blue)
 	LED_Data[LEDnum][3] = Blue;
 }
 
+void D_LED_Set_Circle(uint8_t LED[][3], int num){
+	for(int i=0; i<10; i++){
+		LED_Data[(num-1)*10 + i][0] = (num-1)*10 + i;
+		LED_Data[(num-1)*10 + i][1] = LED[i][1];
+		LED_Data[(num-1)*10 + i][2] = LED[i][0];
+		LED_Data[(num-1)*10 + i][3] = LED[i][2];
+	}
+}
+
 void D_LED_Send(void)
 {
 	uint32_t indx=0;

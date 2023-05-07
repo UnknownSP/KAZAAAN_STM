@@ -20,5 +20,7 @@ int appInit(void);
 #define IO_READ_ENC_HOME() (!D_GPIO_Read(GPIOB,GPIO_PIN_5))
 
 #define LED_OFFSET 4
+#define RAINBOW_FLOWTIME 100
+#define BLINK_FLOWTIME 1500
 
 #endif /* INC_APP_H_ */

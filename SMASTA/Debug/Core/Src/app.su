@@ -1,3 +1,4 @@
-app.c:17:5:appInit	4	static
-app.c:21:5:appTask	40	static
-app.c:88:12:Encoder_Process	16	static
+app.c:35:5:appInit	4	static
+app.c:39:5:appTask	56	static
+app.c:172:12:Encoder_Process	16	static
+app.c:216:13:ArraySwap_Rainbow	184	static

@@ -13,6 +13,7 @@
 #define LED_NUM 50
 
 void D_LED_Set(int LEDnum, int Red, int Green, int Blue);
+void D_LED_Set_Circle(uint8_t LED[][3], int num);
 void D_LED_Send(void);
 void D_LED_Callback(void);
 void D_LED_Rotate(int num);
