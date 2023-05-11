@@ -13,21 +13,47 @@
 static uint32_t Encoder_Count = 0;
 static uint8_t LED_Temp[LED_NUM][3];
 static uint8_t LED_Temp_Rainbow[LED_NUM][3];
+//static uint8_t Rainbow[7][3] = {
+//	{255,  0,  0},
+//	{255,150,  0},
+//	{255,240,  0},
+//	{  0,135,  0},
+//	{  0,145,255},
+//	{  0,100,190},
+//	{145,  0,130},
+//};
+//static uint8_t Rainbow[7][3] = {
+//	{ 57,168,105},
+//	{242,229, 92},
+//	{232,172, 81},
+//	{222,102, 65},
+//	{165, 91,154},
+//	{ 93, 80,153},
+//	{ 71,132,191},
+//};
 static uint8_t Rainbow[7][3] = {
-	{255,  0,  0},
-	{255,150,  0},
-	{255,240,  0},
-	{  0,135,  0},
-	{  0,145,255},
-	{  0,100,190},
-	{145,  0,130},
+	{  0,153, 66},
+	{255,241,  0},
+	{243,152,  0},
+	{230,  0, 18},
+	{146,  7,131},
+	{ 29, 32,136},
+	{  0,104,183},
 };
 static uint32_t Recent_System_counter = 0;;
 static uint32_t DeltaTime = 0;
 static uint32_t RainbowTime = 0;
 static uint32_t BlinkTime = 0;
+static uint32_t GradationTime = 0;
+static uint32_t GradationFadeTime = 0;
 static int RainbowCount = 0;
+static int GradationCount = 1;
+static int GradationFadeCount = 0;
 static double BlinkCoeff = 1.0;
+static bool _bump1_is_on = false;
+static bool _bump2_is_on = false;
+static bool _bump1_wait_off = false;
+static bool _bump2_wait_off = false;
 
 static int Encoder_Process(void);
 static void ArraySwap_Rainbow(int num);
@@ -43,12 +69,39 @@ int appTask(void){
 
 	if(IO_READ_USERBUTTON()){
 		//IO_SET_USERLED();
+		IO_SET_STAYKICKER();
 	}else{
 		//IO_RESET_USERLED();
 		//for(int i=0; i<50; i++){
         //	D_LED_Set(i, 0, 0, 0);
       	//}
       	//D_LED_Send();
+		IO_RESET_STAYKICKER();
+	}
+
+	if(IO_READ_BUMP_1_HIT()==1 && !_bump1_is_on && !_bump1_wait_off){
+		_bump1_is_on = true;
+		IO_SET_BUMP_1();
+	}
+	if(_bump1_is_on && IO_READ_BUMP_1_SOL()==1 && !_bump1_wait_off){
+		_bump1_is_on = false;
+		_bump1_wait_off = true;
+		IO_RESET_BUMP_1();
+	}
+	if(_bump1_wait_off && IO_READ_BUMP_1_SOL()==0 && IO_READ_BUMP_1_HIT()==0){
+		_bump1_wait_off = false;
+	}
+	if(IO_READ_BUMP_2_HIT()==1 && !_bump2_is_on && !_bump2_wait_off){
+		_bump2_is_on = true;
+		IO_SET_BUMP_2();
+	}
+	if(_bump2_is_on && IO_READ_BUMP_2_SOL()==1 && !_bump2_wait_off){
+		_bump2_is_on = false;
+		_bump2_wait_off = true;
+		IO_RESET_BUMP_2();
+	}
+	if(_bump2_wait_off && IO_READ_BUMP_2_SOL()==0 && IO_READ_BUMP_2_HIT()==0){
+		_bump2_wait_off = false;
 	}
 
 	RainbowTime += DeltaTime;
@@ -59,6 +112,27 @@ int appTask(void){
 			RainbowCount = 0;
 		}
 	}
+	GradationTime += DeltaTime;
+	if(GradationTime >= (GRADATION_CYCLETIME/(LED_NUM*10))){
+		//GradationFadeCount++;
+		GradationCount++;
+		GradationTime = 0;
+		//if(GradationFadeCount >= 10){
+		//	GradationFadeCount = 0;
+		//}
+		if(GradationCount > 250*2){
+			GradationCount = 0;
+		}
+		GradationFadeCount = GradationCount%10;
+	}
+	//GradationFadeTime += DeltaTime;
+	//if(GradationFadeTime >= (GRADATION_CYCLETIME/LED_NUM)){
+	//	GradationFadeCount++;
+	//	GradationFadeTime = 0;
+	//	if(GradationFadeCount >= LED_NUM){
+	//		GradationFadeCount = 0;
+	//	}
+	//}
 	BlinkTime += DeltaTime;
 	if(BlinkTime >= BLINK_FLOWTIME){
 		BlinkTime = 0;
@@ -119,7 +193,7 @@ int appTask(void){
 				}else{
 					coeff = 1.0;
 				}
-				int index = (Encoder_Count + i*10+j) % 50;
+				int index = ((int)(Encoder_Count/2.0) + i*10+j) % 50;
 				LED_Temp[j][0] = (int)((double)LED_Temp_Rainbow[index][0]*coeff);
 				LED_Temp[j][1] = (int)((double)LED_Temp_Rainbow[index][1]*coeff);
 				LED_Temp[j][2] = (int)((double)LED_Temp_Rainbow[index][2]*coeff);
@@ -152,12 +226,40 @@ int appTask(void){
 		//	D_LED_Set(i*10+j, (j+1)*25*r, (j+1)*25*g, (j+1)*25*b);
     	//}
     }
-	D_LED_Rotate(-Encoder_Count + LED_OFFSET);
+	//for(int i=0; i<LED_NUM; i++){
+	//	if(GradationCount <= 250){
+	//		LED_Temp[i][0] = 250 - (GradationCount-1);
+	//		LED_Temp[i][1] = (GradationCount-1);
+	//		LED_Temp[i][2] = 0;
+	//	}else if(GradationCount <= 500){
+	//		LED_Temp[i][0] = 0;
+	//		LED_Temp[i][1] = 250 - (GradationCount-1-250);
+	//		LED_Temp[i][2] = (GradationCount-1-250);;
+	//	}
+	//}
+	//for(int i=0; i<GradationCount/10; i++){
+	//	LED_Temp[i][0] = 0;
+	//	LED_Temp[i][1] = 0;
+	//	LED_Temp[i][2] = 0;
+	//}
+	//LED_Temp[GradationCount/10][0] = (double)LED_Temp[GradationCount/10][0]*((double)(10-GradationFadeCount)/10.0);
+	//LED_Temp[GradationCount/10][1] = (double)LED_Temp[GradationCount/10][1]*((double)(10-GradationFadeCount)/10.0);
+	//LED_Temp[GradationCount/10][2] = (double)LED_Temp[GradationCount/10][2]*((double)(10-GradationFadeCount)/10.0);
+	
+	//D_LED_Set_All(LED_Temp);
+	D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
     D_LED_Send();
 
 	int16_t debug_bits = 0;
-	debug_bits |= ((int)IO_READ_ENC_HOME() << 1);
 	debug_bits |= ((int)IO_READ_ENC_STEP() << 0);
+	debug_bits |= ((int)IO_READ_ENC_HOME() << 1);
+	debug_bits |= ((int)IO_READ_BUMP_1_HIT() << 2);
+	debug_bits |= ((int)IO_READ_BUMP_1_SOL() << 3);
+	debug_bits |= ((int)IO_READ_BUMP_2_HIT() << 4);
+	debug_bits |= ((int)IO_READ_BUMP_2_SOL() << 5);
+	debug_bits |= ((int)IO_READ_BALL_DETECT() << 6);
+	debug_bits |= ((int)IO_READ_KICKER_DOWN() << 7);
+	debug_bits |= ((int)IO_READ_STAYKICKER_DOWN() << 8);
 	D_Mess_printf("\033[1;1H");
 	D_Mess_printf("[%10d]\n",G_System_counter);
 	D_Mess_printf("[%10d]\n",Encoder_Count);
@@ -185,7 +287,7 @@ static int Encoder_Process(void){
 	if(enc_change_count >= 5){
 		recent_enc_state = enc_state;
 		enc_change_count = 0;
-		if(enc_state == 1){
+		if(enc_state == 0 || enc_state == 1){
 			Encoder_Count++;
 		}
 	}
@@ -199,14 +301,18 @@ static int Encoder_Process(void){
 		recent_home_state = home_state;
 		home_change_count = 0;
 		if(home_state == 1){
-			Encoder_Count = 1;
+			if(recent_enc_state == 0){
+				Encoder_Count = 1;
+			}else if(recent_enc_state == 1){
+				Encoder_Count = 2;
+			}
 		}
 	}
 	if(Encoder_Count > 10){
 		reset = false;
 		//Encoder_Count = 0;
 	}
-	if(Encoder_Count > 50){
+	if(Encoder_Count > 100){
 		Encoder_Count = 1;
 	}
 

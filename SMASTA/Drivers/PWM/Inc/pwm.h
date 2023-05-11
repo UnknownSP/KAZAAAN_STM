@@ -11,6 +11,6 @@
 #include "main.h"
 
 void D_PWM_Init(void);
-void D_PWM_Set(int channel, int value);
+void D_PWM_Set(int timer, int channel, int value);
 
 #endif /* PWM_INC_PWM_H_ */
