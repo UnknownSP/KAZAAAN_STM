@@ -23,6 +23,8 @@ void D_PWM_Init(void){
 }
 
 void D_PWM_Set(int timer, int channel, int value){
+	if(value > 5000) value = 5000;
+	if(value < 0)	value = 0;
 	if(timer == 2){
 		switch(channel){
 		case 1:

@@ -11,6 +11,7 @@
 #include "app.h"
 
 static uint32_t Encoder_Count = 0;
+static uint32_t Encoder_ResetCount = 0;
 static uint8_t LED_Temp[LED_NUM][3];
 static uint8_t LED_Temp_Rainbow[LED_NUM][3];
 //static uint8_t Rainbow[7][3] = {
@@ -55,29 +56,97 @@ static bool _bump2_is_on = false;
 static bool _bump1_wait_off = false;
 static bool _bump2_wait_off = false;
 
+
+static int Encoder_Diff(int nowCount, int targetCount);
+static int Encoder_RangeAdjust(int count);
+static int Ball_Detect(int direction);
+static void Croon_Rotate(int speed, int direction);
 static int Encoder_Process(void);
 static void ArraySwap_Rainbow(int num);
+
+static bool _is_SMASTA_Game = false;
+static SMASTA_Mode smasta_mode = 5;
+static int croon_direction = 0;
+static uint32_t caseTime = 0;
 
 int appInit(void){
 	return 0;
 }
 
 int appTask(void){
+	static bool _userbutton_ena = false;
+	static int ball_detect_num = 0;
+	static int croon_target = 0;
+	static int target_diff = 0;
+
 	DeltaTime = G_System_counter - Recent_System_counter;
 
 	Encoder_Process();
 
 	if(IO_READ_USERBUTTON()){
 		//IO_SET_USERLED();
-		IO_SET_STAYKICKER();
+		//IO_SET_STAYKICKER();
+		//IO_SET_KICKER();
+		//D_PWM_Set(3,1,5000);
+		if(_userbutton_ena){
+			if(_is_SMASTA_Game){
+				_is_SMASTA_Game = false;
+				smasta_mode = 5;
+			}else{
+				_is_SMASTA_Game = true;
+			}
+			croon_direction = 0;
+		}
+		_userbutton_ena = false;
 	}else{
+		_userbutton_ena = true;
 		//IO_RESET_USERLED();
 		//for(int i=0; i<50; i++){
         //	D_LED_Set(i, 0, 0, 0);
       	//}
       	//D_LED_Send();
-		IO_RESET_STAYKICKER();
+		//IO_RESET_STAYKICKER();
+		//IO_RESET_KICKER();
+		//D_PWM_Set(3,1,0);
 	}
+
+	if(_is_SMASTA_Game){
+		caseTime += DeltaTime;
+		switch (smasta_mode)
+		{
+		case SM_CROON_INIT:
+			Croon_Rotate(CROON_INIT_SPEED,croon_direction);
+			if(Encoder_ResetCount >= 2){
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
+		case SM_BALL_DETECT:
+			ball_detect_num = Ball_Detect(croon_direction);
+			if(ball_detect_num != 0){
+				croon_target = Encoder_RangeAdjust((5-(ball_detect_num%5)) * 20 + (-4) + 50 + 2);
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
+		case SM_CROON_SET_KICKER:
+			target_diff = Encoder_Diff(Encoder_Count, croon_target);
+			if(target_diff >= 25){
+				Croon_Rotate(CROON_INIT_SPEED,croon_direction);
+			}else if(target_diff == 0){
+				Croon_Rotate(0,0);
+				smasta_mode += 1;
+				caseTime = 0;
+			}else{
+				Croon_Rotate(CROON_INIT_MIN_SPEED + ((CROON_INIT_SPEED-CROON_INIT_MIN_SPEED)*target_diff)/25,croon_direction);
+			}
+			break;
+		
+		default:
+			break;
+		}
+	}
+
 
 	if(IO_READ_BUMP_1_HIT()==1 && !_bump1_is_on && !_bump1_wait_off){
 		_bump1_is_on = true;
@@ -221,6 +290,13 @@ int appTask(void){
 				LED_Temp[j][2] = (int)((double)b*255.0*coeff);
 			}
 		}
+		if(i==ball_detect_num-1){
+			for(int j=0;j<10;j++){
+				LED_Temp[j][0] = 0;
+				LED_Temp[j][1] = 0;
+				LED_Temp[j][2] = 0;
+			}
+		}
 		D_LED_Set_Circle(LED_Temp, i+1);
     	//for(int j=0;j<10;j++){
 		//	D_LED_Set(i*10+j, (j+1)*25*r, (j+1)*25*g, (j+1)*25*b);
@@ -263,12 +339,66 @@ int appTask(void){
 	D_Mess_printf("\033[1;1H");
 	D_Mess_printf("[%10d]\n",G_System_counter);
 	D_Mess_printf("[%10d]\n",Encoder_Count);
-	D_Mess_printf("[%10d]\n",RainbowTime);
+	D_Mess_printf("[%10d]\n",ball_detect_num);
 	D_Mess_printf("%016b\n", debug_bits);
 
 
 	Recent_System_counter = Recent_System_counter + DeltaTime;
 	return 0;
+}
+
+
+static int Encoder_Diff(int nowCount, int targetCount){
+	if(nowCount > targetCount){
+		targetCount += 100;
+	}
+	return targetCount - nowCount;
+}
+
+static int Encoder_RangeAdjust(int count){
+	if(count > 100){
+		count -= 100;
+	}
+	if(count < 1){
+		count += 100;
+	}
+	return count;
+}
+
+static int Ball_Detect(int direction){
+	int return_num = 0;
+	if(IO_READ_BALL_DETECT()==1){
+		if(Encoder_Count >= (5+2) && Encoder_Count < (25+2)){			//middle 16	 reverse 66
+			return_num = 4;
+		}else if(Encoder_Count >= (25+2) && Encoder_Count < (45+2)){	//middle 36  reverse 86
+			return_num = 3;
+		}else if(Encoder_Count >= (45+2) && Encoder_Count < (65+2)){	//middle 56  reverse 6
+			return_num = 2;
+		}else if(Encoder_Count >= (65+2) && Encoder_Count < (85+2)){	//middle 76  reverse 26
+			return_num = 1;
+		}else if(Encoder_Count >= (85+2) || Encoder_Count < (5+2)){		//middle 96  reverse 46
+			return_num = 5;
+		}
+	}
+	return return_num;
+}
+
+static void Croon_Rotate(int speed, int direction){
+	if(speed > 1000) speed = 1000;
+	if(speed < 0)	speed = 0;
+	int set_speed = speed * 5;
+	if(speed == 0){
+		IO_SET_MOTOR_ENA();
+		D_PWM_Set(CROON_MOTOR_F_TIM,CROON_MOTOR_F_CHANNEL,0);
+		D_PWM_Set(CROON_MOTOR_R_TIM,CROON_MOTOR_R_CHANNEL,0);
+		return;
+	}
+	IO_RESET_MOTOR_ENA();
+	if(direction == 0){
+		D_PWM_Set(CROON_MOTOR_F_TIM,CROON_MOTOR_F_CHANNEL,set_speed);
+	}else if(direction == 1){
+		D_PWM_Set(CROON_MOTOR_R_TIM,CROON_MOTOR_R_CHANNEL,set_speed);
+	}
 }
 
 static int Encoder_Process(void){
@@ -305,6 +435,10 @@ static int Encoder_Process(void){
 				Encoder_Count = 1;
 			}else if(recent_enc_state == 1){
 				Encoder_Count = 2;
+			}
+			Encoder_ResetCount += 1;
+			if(Encoder_ResetCount > 10){
+				Encoder_ResetCount = 10;
 			}
 		}
 	}

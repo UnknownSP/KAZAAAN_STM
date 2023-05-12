@@ -1,4 +1,8 @@
-app.c:61:5:appInit	4	static
-app.c:65:5:appTask	56	static
-app.c:274:12:Encoder_Process	16	static
-app.c:322:13:ArraySwap_Rainbow	184	static
+app.c:72:5:appInit	4	static
+app.c:76:5:appTask	56	static
+app.c:351:12:Encoder_Diff	16	static
+app.c:358:12:Encoder_RangeAdjust	16	static
+app.c:368:12:Ball_Detect	24	static
+app.c:386:13:Croon_Rotate	24	static
+app.c:404:12:Encoder_Process	16	static
+app.c:456:13:ArraySwap_Rainbow	184	static
