@@ -11,9 +11,134 @@
 #include "stm32f4xx_hal.h"
 
 uint8_t LED_Data[LED_NUM][4];
-uint8_t LED_Temp[LED_NUM][4];
+uint8_t D_LED_Temp[LED_NUM][4];
 volatile bool _dataSent= false;
 static uint32_t pwmData[(24*LED_NUM)+50];
+
+static uint8_t Yellow_Random[LED_NUM];
+static int YellowRandom_num = 0;
+static uint8_t LED_Temp_Rainbow[LED_NUM][3];
+static int RainbowCount = 0;
+static uint8_t Rainbow[7][3] = {
+	{  0,153, 66},
+	{255,241,  0},
+	{243,152,  0},
+	{230,  0, 18},
+	{146,  7,131},
+	{ 29, 32,136},
+	{  0,104,183},
+};
+static double BlinkCoeff = 1.0;
+
+void D_LED_Set_Blink(int deltatime){
+	static uint32_t BlinkTime = 0;
+	BlinkTime += deltatime;
+	if(BlinkTime >= BLINK_FLOWTIME){
+		BlinkTime = 0;
+	}
+	if(BlinkTime <= 100){
+		BlinkCoeff = 0.0;
+	}else if(BlinkTime <= 250){
+		BlinkCoeff = 1.0;
+	}else if(BlinkTime <= 350){
+		BlinkCoeff = 0.0;
+	}else if(BlinkTime <= 450){
+		BlinkCoeff = 1.0;
+	}
+}
+
+void D_LED_Get_Blink(uint8_t LED[][3]){
+	for(int j=0;j<10;j++){
+		LED[j][0] = (int)((double)LED[j][0]*BlinkCoeff);
+		LED[j][1] = (int)((double)LED[j][1]*BlinkCoeff);
+		LED[j][2] = (int)((double)LED[j][2]*BlinkCoeff);
+	}
+}
+
+void D_LED_Set_Rainbow(int deltatime){
+	static uint32_t RainbowTime = 0;
+	RainbowTime += deltatime;
+	if(RainbowTime >= RAINBOW_FLOWTIME){
+		RainbowCount++;
+		RainbowTime = 0;
+		if(RainbowCount >= 50){
+			RainbowCount = 0;
+		}
+	}
+	D_LED_Rainbow_ArraySwap(RainbowCount);
+}
+
+void D_LED_Get_Rainbow(uint8_t LED[][3], int encoder, int pocket){
+	for(int j=0; j<10; j++){
+		int index = ((int)(encoder/2.0) + (pocket-1)*10+j) % 50;
+		LED[j][0] = LED_Temp_Rainbow[index][0];
+		LED[j][1] = LED_Temp_Rainbow[index][1];
+		LED[j][2] = LED_Temp_Rainbow[index][2];
+	}
+}
+
+void D_LED_Rainbow_ArraySwap(int num){
+	uint8_t arr_temp[LED_NUM][3];
+	for(int i=0; i<LED_NUM; i++){
+		LED_Temp_Rainbow[i][0] = Rainbow[i%7][0];
+		LED_Temp_Rainbow[i][1] = Rainbow[i%7][1];
+		LED_Temp_Rainbow[i][2] = Rainbow[i%7][2];
+	}
+	int indx;
+	for(int i=0;i<LED_NUM; i++){
+		indx = i + num;
+		if(indx >= LED_NUM){
+			indx -= LED_NUM;
+		}
+		if(indx < 0){
+			indx += LED_NUM;
+		}
+		arr_temp[i][0] = LED_Temp_Rainbow[indx][0];
+		arr_temp[i][1] = LED_Temp_Rainbow[indx][1];
+		arr_temp[i][2] = LED_Temp_Rainbow[indx][2];
+	}
+	for(int i=0;i<LED_NUM; i++){
+		LED_Temp_Rainbow[i][0] = arr_temp[i][0];
+		LED_Temp_Rainbow[i][1] = arr_temp[i][1];
+		LED_Temp_Rainbow[i][2] = arr_temp[i][2];
+	}
+}
+
+void D_LED_Init_YellowRandom(void){
+	for(int i=0; i<LED_NUM; i++){
+		Yellow_Random[i] = rand()%50;
+	}
+}
+
+void D_LED_Set_YellowRandomFlow(int deltatime){
+	static uint32_t YellowRandomTime = 0;
+	YellowRandomTime+=deltatime;
+	if(YellowRandomTime >= YELLOWRANDOM_FLOWTIME){
+		YellowRandomTime = 0;
+		YellowRandom_num += 1;
+		YellowRandom_num %= 50;
+	}
+}
+
+void D_LED_Get_YellowRandomFlow(uint8_t LED[][3]){
+	for(int i=0; i<LED_NUM; i++){
+		LED[i][0] = 180;
+		int index = i+YellowRandom_num;
+		if(index >= LED_NUM) index -= LED_NUM;
+		if(index < 0) index += LED_NUM;
+		LED[i][1] = 150-Yellow_Random[index];
+		LED[i][2] = 50-Yellow_Random[LED_NUM-index-1];
+	}
+}
+
+void D_LED_Off(void){
+	for(int i=0; i<LED_NUM; i++){
+		LED_Data[i][0] = i;
+		LED_Data[i][1] = 0;
+		LED_Data[i][2] = 0;
+		LED_Data[i][3] = 0;
+	}
+}
 
 void D_LED_Set(int LEDnum, int Red, int Green, int Blue)
 {
@@ -83,16 +208,16 @@ void D_LED_Rotate(int num){
 		if(indx < 0){
 			indx += 50;
 		}
-		LED_Temp[i][0] = LED_Data[indx][0];
-		LED_Temp[i][1] = LED_Data[indx][1];
-		LED_Temp[i][2] = LED_Data[indx][2];
-		LED_Temp[i][3] = LED_Data[indx][3];
+		D_LED_Temp[i][0] = LED_Data[indx][0];
+		D_LED_Temp[i][1] = LED_Data[indx][1];
+		D_LED_Temp[i][2] = LED_Data[indx][2];
+		D_LED_Temp[i][3] = LED_Data[indx][3];
 	}
 	for(int i=0;i<LED_NUM; i++){
-		LED_Data[i][0] = LED_Temp[i][0];
-		LED_Data[i][1] = LED_Temp[i][1];
-		LED_Data[i][2] = LED_Temp[i][2];
-		LED_Data[i][3] = LED_Temp[i][3];
+		LED_Data[i][0] = i;//D_LED_Temp[i][0];
+		LED_Data[i][1] = D_LED_Temp[i][1];
+		LED_Data[i][2] = D_LED_Temp[i][2];
+		LED_Data[i][3] = D_LED_Temp[i][3];
 	}
 }
 

@@ -13,7 +13,7 @@
 static uint32_t Encoder_Count = 0;
 static uint32_t Encoder_ResetCount = 0;
 static uint8_t LED_Temp[LED_NUM][3];
-static uint8_t LED_Temp_Rainbow[LED_NUM][3];
+//static uint8_t LED_Temp_Rainbow[LED_NUM][3];
 //static uint8_t Rainbow[7][3] = {
 //	{255,  0,  0},
 //	{255,150,  0},
@@ -32,25 +32,24 @@ static uint8_t LED_Temp_Rainbow[LED_NUM][3];
 //	{ 93, 80,153},
 //	{ 71,132,191},
 //};
-static uint8_t Rainbow[7][3] = {
-	{  0,153, 66},
-	{255,241,  0},
-	{243,152,  0},
-	{230,  0, 18},
-	{146,  7,131},
-	{ 29, 32,136},
-	{  0,104,183},
-};
+//static uint8_t Rainbow[7][3] = {
+//	{  0,153, 66},
+//	{255,241,  0},
+//	{243,152,  0},
+//	{230,  0, 18},
+//	{146,  7,131},
+//	{ 29, 32,136},
+//	{  0,104,183},
+//};
 static uint32_t Recent_System_counter = 0;;
 static uint32_t DeltaTime = 0;
-static uint32_t RainbowTime = 0;
-static uint32_t BlinkTime = 0;
+//static uint32_t RainbowTime = 0;
+//static uint32_t BlinkTime = 0;
 static uint32_t GradationTime = 0;
-static uint32_t GradationFadeTime = 0;
-static int RainbowCount = 0;
+//static int RainbowCount = 0;
 static int GradationCount = 1;
 static int GradationFadeCount = 0;
-static double BlinkCoeff = 1.0;
+//static double BlinkCoeff = 1.0;
 static bool _bump1_is_on = false;
 static bool _bump2_is_on = false;
 static bool _bump1_wait_off = false;
@@ -62,14 +61,24 @@ static int Encoder_RangeAdjust(int count);
 static int Ball_Detect(int direction);
 static void Croon_Rotate(int speed, int direction);
 static int Encoder_Process(void);
-static void ArraySwap_Rainbow(int num);
+//static void ArraySwap_Rainbow(int num);
+static void BumpLED_Set(uint8_t R, uint8_t G, uint8_t B, int bumper);
+static void LED_Pocket_Get(uint8_t LED[][3], LED_Pocket_Mode mode, int pocket, int encoder);
+static void LED_Pocket_Blightness(uint8_t LED[][3], int blightness);
 
 static bool _is_SMASTA_Game = false;
 static SMASTA_Mode smasta_mode = 5;
 static int croon_direction = 0;
 static uint32_t caseTime = 0;
 
+static int BlockPosition_Encoder[3] = {
+	15,
+	48,
+	81,
+};
+
 int appInit(void){
+	D_LED_Init_YellowRandom();
 	return 0;
 }
 
@@ -78,6 +87,14 @@ int appTask(void){
 	static int ball_detect_num = 0;
 	static int croon_target = 0;
 	static int target_diff = 0;
+	static int Pocket[5] = {
+		LED_P_RAINBOW,
+		LED_P_BLINK_PURPLE,
+		LED_P_RED,
+		LED_P_BLINK_YELLOW,
+		LED_P_BLUE,
+	};
+	uint8_t temp[10][3];
 
 	DeltaTime = G_System_counter - Recent_System_counter;
 
@@ -91,7 +108,7 @@ int appTask(void){
 		if(_userbutton_ena){
 			if(_is_SMASTA_Game){
 				_is_SMASTA_Game = false;
-				smasta_mode = 5;
+				smasta_mode = 4;
 			}else{
 				_is_SMASTA_Game = true;
 			}
@@ -114,7 +131,21 @@ int appTask(void){
 		caseTime += DeltaTime;
 		switch (smasta_mode)
 		{
+		case SM_INIT:
+			Croon_Rotate(0,0);
+			BumpLED_Set(0,0,0,1);
+			BumpLED_Set(0,0,0,2);
+			D_LED_Off();
+			if(caseTime >= 1000){
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
 		case SM_CROON_INIT:
+			D_LED_Get_YellowRandomFlow(LED_Temp);
+			D_LED_Set_All(LED_Temp);
+			BumpLED_Set(150,150,40,1);
+			BumpLED_Set(150,150,40,2);
 			Croon_Rotate(CROON_INIT_SPEED,croon_direction);
 			if(Encoder_ResetCount >= 2){
 				smasta_mode += 1;
@@ -122,6 +153,10 @@ int appTask(void){
 			}
 			break;
 		case SM_BALL_DETECT:
+			D_LED_Get_YellowRandomFlow(LED_Temp);
+			D_LED_Set_All(LED_Temp);
+			BumpLED_Set(150,150,40,1);
+			BumpLED_Set(150,150,40,2);
 			ball_detect_num = Ball_Detect(croon_direction);
 			if(ball_detect_num != 0){
 				croon_target = Encoder_RangeAdjust((5-(ball_detect_num%5)) * 20 + (-4) + 50 + 2);
@@ -130,6 +165,10 @@ int appTask(void){
 			}
 			break;
 		case SM_CROON_SET_KICKER:
+			D_LED_Get_YellowRandomFlow(LED_Temp);
+			D_LED_Set_All(LED_Temp);
+			BumpLED_Set(150,150,40,1);
+			BumpLED_Set(150,150,40,2);
 			target_diff = Encoder_Diff(Encoder_Count, croon_target);
 			if(target_diff >= 25){
 				Croon_Rotate(CROON_INIT_SPEED,croon_direction);
@@ -141,12 +180,94 @@ int appTask(void){
 				Croon_Rotate(CROON_INIT_MIN_SPEED + ((CROON_INIT_SPEED-CROON_INIT_MIN_SPEED)*target_diff)/25,croon_direction);
 			}
 			break;
+
+		case SM_LED_INIT:
+			if(caseTime >= 500 && caseTime <= 1500){
+				for(int i=0; i<LED_NUM; i++){
+					LED_Temp[i][0] = 80;
+					LED_Temp[i][1] = 40;
+					LED_Temp[i][2] = 0;
+				}
+				D_LED_Set_All(LED_Temp);
+			}else if(caseTime >= 500 && caseTime <= 2000){
+				BumpLED_Set(0,0,0,1);
+				BumpLED_Set(0,0,0,2);
+				D_LED_Off();
+			}else if(caseTime > 2000){
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
+		case SM_LED_POCKET_SHOW:
+			D_LED_Off();
+			for(int i=0; i<5; i++){
+				LED_Pocket_Get(temp,Pocket[i],i+1,Encoder_Count);
+				int phase = caseTime/POCKET_SHOWTIME;
+				if(i > phase){
+					LED_Pocket_Blightness(temp, 0);
+				}else if(i < phase){
+					LED_Pocket_Blightness(temp, 100);
+				}else{
+					LED_Pocket_Blightness(temp, (int)((double)(caseTime%POCKET_SHOWTIME)/(POCKET_SHOWTIME/100.0)));
+				}
+				D_LED_Set_Circle(temp, i+1);
+			}
+			D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
+			if(caseTime > POCKET_SHOWTIME*5 + 1000){
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
 		
+		case SM_LAUNCH_BALL:
+			D_LED_Off();
+			for(int i=0; i<5; i++){
+				LED_Pocket_Get(temp,Pocket[i],i+1,Encoder_Count);
+				D_LED_Set_Circle(temp, i+1);
+			}
+			D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
+
+			//IO_SET_KICKER();
+			if(IO_READ_KICKER_DOWN()==1){
+				BumpLED_Set(BUMP_1_WAITCOLOR_R,BUMP_1_WAITCOLOR_G,BUMP_1_WAITCOLOR_B,1);
+				BumpLED_Set(BUMP_2_WAITCOLOR_R,BUMP_2_WAITCOLOR_G,BUMP_2_WAITCOLOR_B,2);
+				IO_RESET_KICKER();
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
+
+		case SM_LAUNCH_WAIT:
+			D_LED_Off();
+			for(int i=0; i<5; i++){
+				LED_Pocket_Get(temp,Pocket[i],i+1,Encoder_Count);
+				D_LED_Set_Circle(temp, i+1);
+			}
+			D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
+
+			if(caseTime >= 800 && IO_READ_KICKER_DOWN()==0){
+				D_LED_Off();
+				smasta_mode += 1;
+				caseTime = 0;
+			}
+			break;
+
+		case SM_CROON_SET_BLOCK:
+			Croon_Rotate(CROON_INIT_SPEED,croon_direction);
+			for(int i=0; i<3; i++){
+				if(Encoder_Count == BlockPosition_Encoder[i]){
+					Croon_Rotate(0,0);
+					smasta_mode += 1;
+					caseTime = 0;
+					break;
+				}
+			}
+			break;
+
 		default:
 			break;
 		}
 	}
-
 
 	if(IO_READ_BUMP_1_HIT()==1 && !_bump1_is_on && !_bump1_wait_off){
 		_bump1_is_on = true;
@@ -173,14 +294,14 @@ int appTask(void){
 		_bump2_wait_off = false;
 	}
 
-	RainbowTime += DeltaTime;
-	if(RainbowTime >= RAINBOW_FLOWTIME){
-		RainbowCount++;
-		RainbowTime = 0;
-		if(RainbowCount >= 50){
-			RainbowCount = 0;
-		}
-	}
+	//RainbowTime += DeltaTime;
+	//if(RainbowTime >= RAINBOW_FLOWTIME){
+	//	RainbowCount++;
+	//	RainbowTime = 0;
+	//	if(RainbowCount >= 50){
+	//		RainbowCount = 0;
+	//	}
+	//}
 	GradationTime += DeltaTime;
 	if(GradationTime >= (GRADATION_CYCLETIME/(LED_NUM*10))){
 		//GradationFadeCount++;
@@ -202,21 +323,22 @@ int appTask(void){
 	//		GradationFadeCount = 0;
 	//	}
 	//}
-	BlinkTime += DeltaTime;
-	if(BlinkTime >= BLINK_FLOWTIME){
-		BlinkTime = 0;
-	}
-	if(BlinkTime <= 100){
-		BlinkCoeff = 0.0;
-	}else if(BlinkTime <= 250){
-		BlinkCoeff = 1.0;
-	}else if(BlinkTime <= 350){
-		BlinkCoeff = 0.0;
-	}else if(BlinkTime <= 450){
-		BlinkCoeff = 1.0;
-	}
+	//BlinkTime += DeltaTime;
+	//if(BlinkTime >= BLINK_FLOWTIME){
+	//	BlinkTime = 0;
+	//}
+	//if(BlinkTime <= 100){
+	//	BlinkCoeff = 0.0;
+	//}else if(BlinkTime <= 250){
+	//	BlinkCoeff = 1.0;
+	//}else if(BlinkTime <= 350){
+	//	BlinkCoeff = 0.0;
+	//}else if(BlinkTime <= 450){
+	//	BlinkCoeff = 1.0;
+	//}
 
-	ArraySwap_Rainbow(RainbowCount);
+	//ArraySwap_Rainbow(RainbowCount);
+	/*
 	for(int i=0; i<5; i++){
     	int r=0;
     	int g=0;
@@ -302,6 +424,9 @@ int appTask(void){
 		//	D_LED_Set(i*10+j, (j+1)*25*r, (j+1)*25*g, (j+1)*25*b);
     	//}
     }
+	*/
+	
+	//Gradation code start
 	//for(int i=0; i<LED_NUM; i++){
 	//	if(GradationCount <= 250){
 	//		LED_Temp[i][0] = 250 - (GradationCount-1);
@@ -321,9 +446,19 @@ int appTask(void){
 	//LED_Temp[GradationCount/10][0] = (double)LED_Temp[GradationCount/10][0]*((double)(10-GradationFadeCount)/10.0);
 	//LED_Temp[GradationCount/10][1] = (double)LED_Temp[GradationCount/10][1]*((double)(10-GradationFadeCount)/10.0);
 	//LED_Temp[GradationCount/10][2] = (double)LED_Temp[GradationCount/10][2]*((double)(10-GradationFadeCount)/10.0);
-	
+	//
 	//D_LED_Set_All(LED_Temp);
-	D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
+	//Gradation code end
+
+	//Start yellow code start
+	//D_LED_YellowRandomFlow(LED_Temp,DeltaTime);
+	//D_LED_Set_All(LED_Temp);
+	//Start yellow code end
+
+	//D_LED_Rotate(-(int)(Encoder_Count/2.0) + LED_OFFSET);
+	D_LED_Set_YellowRandomFlow(DeltaTime);
+	D_LED_Set_Rainbow(DeltaTime);
+	D_LED_Set_Blink(DeltaTime);
     D_LED_Send();
 
 	int16_t debug_bits = 0;
@@ -347,6 +482,22 @@ int appTask(void){
 	return 0;
 }
 
+
+static void BumpLED_Set(uint8_t R, uint8_t G, uint8_t B, int bumper){
+	double coeff = 5000.0/255.0;
+	int R_adjust = (int)((double)R*coeff);
+	int G_adjust = (int)((double)G*coeff);
+	int B_adjust = (int)((double)B*coeff);
+	if(bumper == 1){
+		D_PWM_Set(BUMP_1_R_TIM,BUMP_1_R_CHANNEL,R_adjust);
+		D_PWM_Set(BUMP_1_G_TIM,BUMP_1_G_CHANNEL,G_adjust);
+		D_PWM_Set(BUMP_1_B_TIM,BUMP_1_B_CHANNEL,B_adjust);
+	}else if(bumper == 2){
+		D_PWM_Set(BUMP_2_R_TIM,BUMP_2_R_CHANNEL,R_adjust);
+		D_PWM_Set(BUMP_2_G_TIM,BUMP_2_G_CHANNEL,G_adjust);
+		D_PWM_Set(BUMP_2_B_TIM,BUMP_2_B_CHANNEL,B_adjust);
+	}
+}
 
 static int Encoder_Diff(int nowCount, int targetCount){
 	if(nowCount > targetCount){
@@ -453,30 +604,88 @@ static int Encoder_Process(void){
 	return 0;
 }
 
-static void ArraySwap_Rainbow(int num){
-	uint8_t arr_temp[LED_NUM][3];
-	for(int i=0; i<LED_NUM; i++){
-		LED_Temp_Rainbow[i][0] = Rainbow[i%7][0];
-		LED_Temp_Rainbow[i][1] = Rainbow[i%7][1];
-		LED_Temp_Rainbow[i][2] = Rainbow[i%7][2];
+
+static void LED_Pocket_Blightness(uint8_t LED[][3], int blightness){
+	if(blightness > 100) blightness = 100;
+	double coeff = (double)blightness * (1.0/100.0);
+	for(int i=0; i<10; i++){
+		LED[i][0] = (int)((double)LED[i][0]*coeff);
+		LED[i][1] = (int)((double)LED[i][1]*coeff);
+		LED[i][2] = (int)((double)LED[i][2]*coeff);
 	}
-	int indx;
-	for(int i=0;i<LED_NUM; i++){
-		indx = i + num;
-		if(indx >= LED_NUM){
-			indx -= LED_NUM;
+}
+
+static void LED_Pocket_Get(uint8_t LED[][3], LED_Pocket_Mode mode, int pocket, int encoder){
+	int i;
+	switch(mode){
+	case LED_P_RED:
+		for(i=0; i<10; i++){
+			LED[i][0] = 200;
+			LED[i][1] = 0;
+			LED[i][2] = 0;
 		}
-		if(indx < 0){
-			indx += LED_NUM;
+		break;    
+    case LED_P_GREEN:
+		for(i=0; i<10; i++){
+			LED[i][0] = 0;
+			LED[i][1] = 200;
+			LED[i][2] = 0;
 		}
-		arr_temp[i][0] = LED_Temp_Rainbow[indx][0];
-		arr_temp[i][1] = LED_Temp_Rainbow[indx][1];
-		arr_temp[i][2] = LED_Temp_Rainbow[indx][2];
+		break;      
+    case LED_P_BLUE:
+		for(i=0; i<10; i++){
+			LED[i][0] = 0;
+			LED[i][1] = 0;
+			LED[i][2] = 200;
+		}
+		break;     
+    case LED_P_YELLOW:
+		for(i=0; i<10; i++){
+			LED[i][0] = 200;
+			LED[i][1] = 200;
+			LED[i][2] = 0;
+		}
+		break;     
+    case LED_P_PURPLE:
+		for(i=0; i<10; i++){
+			LED[i][0] = 200;
+			LED[i][1] = 0;
+			LED[i][2] = 200;
+		}
+		break;     
+    case LED_P_CYAN:
+		for(i=0; i<10; i++){
+			LED[i][0] = 0;
+			LED[i][1] = 200;
+			LED[i][2] = 200;
+		}
+		break;       
+    case LED_P_RAINBOW:
+		D_LED_Get_Rainbow(LED, encoder, pocket);
+		break;
+    case LED_P_BLINK_PURPLE:
+		for(i=0; i<10; i++){
+			LED[i][0] = 200;
+			LED[i][1] = 0;
+			LED[i][2] = 200;
+		}
+		D_LED_Get_Blink(LED);
+		break;
+    case LED_P_BLINK_YELLOW:
+		for(i=0; i<10; i++){
+			LED[i][0] = 200;
+			LED[i][1] = 200;
+			LED[i][2] = 0;
+		}
+		D_LED_Get_Blink(LED);
+		break;
 	}
-	for(int i=0;i<LED_NUM; i++){
-		LED_Temp_Rainbow[i][0] = arr_temp[i][0];
-		LED_Temp_Rainbow[i][1] = arr_temp[i][1];
-		LED_Temp_Rainbow[i][2] = arr_temp[i][2];
-	}
+
+	LED[0][0] = 0;
+	LED[0][1] = 0;
+	LED[0][2] = 0;
+	LED[9][0] = 0;
+	LED[9][1] = 0;
+	LED[9][2] = 0;
 }
 

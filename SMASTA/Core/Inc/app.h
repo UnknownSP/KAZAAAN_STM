@@ -58,18 +58,46 @@ int appInit(void);
 #define BUMP_2_B_TIM 2
 #define BUMP_2_B_CHANNEL 2
 
-#define LED_OFFSET 5
+#define LED_OFFSET 6
 #define RAINBOW_FLOWTIME 100
 #define BLINK_FLOWTIME 1500
 #define GRADATION_CYCLETIME 7000
+#define YELLOWRANDOM_FLOWTIME 50
 
 #define CROON_INIT_SPEED 700
 #define CROON_INIT_MIN_SPEED 150
 
+#define POCKET_SHOWTIME 600
+
+#define BUMP_1_WAITCOLOR_R 130
+#define BUMP_1_WAITCOLOR_G 70
+#define BUMP_1_WAITCOLOR_B 130
+#define BUMP_2_WAITCOLOR_R 100
+#define BUMP_2_WAITCOLOR_G 100
+#define BUMP_2_WAITCOLOR_B 100
+
 typedef enum{
+    SM_INIT             = 4,
     SM_CROON_INIT       = 5,
     SM_BALL_DETECT      = 6,
     SM_CROON_SET_KICKER = 7,
+    SM_LED_INIT         = 8,
+    SM_LED_POCKET_SHOW  = 9,
+    SM_LAUNCH_BALL      = 10,
+    SM_LAUNCH_WAIT      = 11,
+    SM_CROON_SET_BLOCK  = 12,
 }SMASTA_Mode;
+
+typedef enum{
+    LED_P_RED           = 3,
+    LED_P_GREEN         = 4,
+    LED_P_BLUE          = 5,
+    LED_P_YELLOW        = 6,
+    LED_P_PURPLE        = 7,
+    LED_P_CYAN          = 8,
+    LED_P_RAINBOW       = 20,
+    LED_P_BLINK_PURPLE  = 21,
+    LED_P_BLINK_YELLOW  = 22,
+}LED_Pocket_Mode;
 
 #endif /* INC_APP_H_ */
