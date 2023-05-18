@@ -29,6 +29,55 @@ static uint8_t Rainbow[7][3] = {
 	{  0,104,183},
 };
 static double BlinkCoeff = 1.0;
+static uint32_t GradationTime = 0;
+static int GradationCount = 1;
+static int GradationFadeCount = 0;
+
+
+void D_LED_Reset_TimeGradation(void){
+	GradationTime = 0;
+	GradationCount = 0;
+	GradationFadeCount = 0;
+}
+
+void D_LED_Set_TimeGradation(int deltatime){
+	GradationTime += deltatime;
+	if(GradationTime >= (GRADATION_CYCLETIME/(LED_NUM*10))){
+		GradationCount++;
+		GradationTime = 0;
+		if(GradationCount > 250*2){
+			GradationCount = 0;
+		}
+		GradationFadeCount = GradationCount%10;
+	}
+}
+
+bool D_LED_Get_TimeGradation(uint8_t LED[][3]){
+	for(int i=0; i<LED_NUM; i++){
+		if(GradationCount <= 250){
+			LED[i][0] = 250 - (GradationCount-1);
+			LED[i][1] = (GradationCount-1);
+			LED[i][2] = 0;
+		}else if(GradationCount <= 500){
+			LED[i][0] = 0;
+			LED[i][1] = 250 - (GradationCount-1-250);
+			LED[i][2] = (GradationCount-1-250);;
+		}
+	}
+	for(int i=0; i<GradationCount/10; i++){
+		LED[i][0] = 0;
+		LED[i][1] = 0;
+		LED[i][2] = 0;
+	}
+	LED[GradationCount/10][0] = (double)LED[GradationCount/10][0]*((double)(10-GradationFadeCount)/10.0);
+	LED[GradationCount/10][1] = (double)LED[GradationCount/10][1]*((double)(10-GradationFadeCount)/10.0);
+	LED[GradationCount/10][2] = (double)LED[GradationCount/10][2]*((double)(10-GradationFadeCount)/10.0);
+	if(GradationCount == 500){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 void D_LED_Set_Blink(int deltatime){
 	static uint32_t BlinkTime = 0;
@@ -225,3 +274,31 @@ void D_LED_Callback(void){
     HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
     _dataSent = true;
 }
+
+//static uint8_t Rainbow[7][3] = {
+//	{255,  0,  0},
+//	{255,150,  0},
+//	{255,240,  0},
+//	{  0,135,  0},
+//	{  0,145,255},
+//	{  0,100,190},
+//	{145,  0,130},
+//};
+//static uint8_t Rainbow[7][3] = {
+//	{ 57,168,105},
+//	{242,229, 92},
+//	{232,172, 81},
+//	{222,102, 65},
+//	{165, 91,154},
+//	{ 93, 80,153},
+//	{ 71,132,191},
+//};
+//static uint8_t Rainbow[7][3] = {
+//	{  0,153, 66},
+//	{255,241,  0},
+//	{243,152,  0},
+//	{230,  0, 18},
+//	{146,  7,131},
+//	{ 29, 32,136},
+//	{  0,104,183},
+//};

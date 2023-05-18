@@ -27,5 +27,8 @@ void D_LED_Get_Rainbow(uint8_t LED[][3], int encoder, int pocket);
 void D_LED_Rainbow_ArraySwap(int num);
 void D_LED_Set_Blink(int deltatime);
 void D_LED_Get_Blink(uint8_t LED[][3]);
+void D_LED_Reset_TimeGradation(void);
+void D_LED_Set_TimeGradation(int deltatime);
+bool D_LED_Get_TimeGradation(uint8_t LED[][3]);
 
 #endif /* LED_INC_LED_H_ */
